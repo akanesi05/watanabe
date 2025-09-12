@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>渡辺検定 - 結果発表</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー部分 -->
+    <header class="result-header">
+      <h1>🐕 渡辺検定 結果発表 🐕</h1>
+    </header>
+
+    <!-- 結果表示部分 -->
+    <main class="result-main">
+      <!-- スコア表示 -->
+      <div class="score-card">
+        <div class="final-score">
+          <span class="score-number"><%= @score %></span>
+          <span class="score-total">/ <%= @total_questions %></span>
+        </div>
+        <p class="score-text">問正解！</p>
+      </div>
+
+      <!-- 評価コメント -->
+      <div class="evaluation-card">
+        <div class="evaluation-emoji"><%= @evaluation[:emoji] %></div>
+        <h2 class="evaluation-title"><%= @evaluation[:title] %></h2>
+        <p class="evaluation-comment"><%= @evaluation[:comment] %></p>
+      </div>
+
+      <!-- 詳細結果 -->
+      <div class="details-card">
+        <h3>📊 詳細結果</h3>
+        <div class="stats">
+        <div class="stat-item">
+            <span class="stat-label">正解率</span>
+            <span class="stat-value"><%= @percentage %>%</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">総問題数</span>
+            <span class="stat-value"><%= @total_questions %></span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">正解数</span>
+            <span class="stat-value"><%= @score %></span>
+        </div>
+        </div>
+
+        
+      </div>
+
+      <!-- アクションボタン -->
+      <div class="action-buttons">
+        <%= link_to "🔄 もう一度挑戦", quiz_start_path, class: "btn btn-primary" %>
+        <%= link_to "🏠 トップに戻る", root_path, class: "btn btn-secondary" %>
+      </div>
+    </main>
+  </div>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+
+    /* ヘッダースタイル */
+    .result-header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .result-header h1 {
+      margin: 0;
+      font-size: 28px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* メイン結果部分 */
+    .result-main {
+      padding: 40px 30px;
+    }
+
+    /* スコアカード */
+    .score-card {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 15px;
+      color: white;
+    }
+
+    .final-score {
+      font-size: 72px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .score-number {
+      color: #ffd700;
+    }
+
+    .score-total {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .score-text {
+      font-size: 24px;
+      margin: 0;
+    }
+
+    /* 評価カード */
+    .evaluation-card {
+      text-align: center;
+      margin-bottom: 30px;
+      padding: 30px;
+      background-color: #f8f9fa;
+      border-radius: 15px;
+      border: 2px solid #e9ecef;
+    }
+
+    .evaluation-emoji {
+      font-size: 80px;
+      margin-bottom: 15px;
+    }
+
+    .evaluation-title {
+      font-size: 28px;
+      color: #333;
+      margin: 0 0 15px 0;
+    }
+
+    .evaluation-comment {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* 詳細結果カード */
+    .details-card {
+      margin-bottom: 30px;
+      padding: 25px;
+      background-color: #f8f9fa;
+      border-radius: 10px;
+      border: 2px solid #e9ecef;
+    }
+
+    .details-card h3 {
+      margin: 0 0 20px 0;
+      color: #333;
+      font-size: 20px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .stat-item {
+      flex: 1;
+      text-align: center;
+      padding: 15px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* アクションボタン */
+    .action-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background-color

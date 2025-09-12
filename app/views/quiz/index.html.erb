@@ -1,0 +1,87 @@
+<!-- app/views/quiz/index.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>渡辺さんの肉か肉じゃないか</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>渡辺さんの肉か肉じゃないか</h1>
+      <p>渡辺さんが肉だと思うものをみんなは見分けられるかな？</p>
+    </header>
+    
+    <main>
+      <div class="game-info">
+        <h2>ゲームの説明</h2>
+        <ul>
+          <li>10問の食べ物クイズに挑戦！</li>
+          <li>「食べられる」「食べられない」を選択</li>
+          <li>全問正解で「渡辺検定1級」認定🏆</li>
+        </ul>
+        <div class="box2">
+        <h2>渡辺さんとは</h2>
+          <p>肉が嫌い。キムタクが好き❤️。</p>
+        </div>
+      </div>
+      
+      <div class="start-button">
+        <%= link_to "クイズを始める", quiz_start_path, class: "btn btn-primary btn-large" %>
+      </div>
+    </main>
+  </div>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .container {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .game-info {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+    
+    .game-info ul {
+      text-align: left;
+      display: inline-block;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    .box2{
+        background-color: #e0f7fa;
+    }
+  </style>
+</body>
+</html>

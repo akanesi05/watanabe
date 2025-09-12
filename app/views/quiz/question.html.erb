@@ -1,0 +1,182 @@
+<!-- app/views/quiz/question.html.erb -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>渡辺検定 - 問題<%= @current_question %></title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <div class="container">
+    <!-- ヘッダー部分 -->
+    <header class="quiz-header">
+      <h1>🐕 渡辺検定 🐕</h1>
+      <div class="progress-info">
+        <span class="question-number">問題 <%= @current_question %> / <%= @total_questions %></span>
+        <span class="score">現在のスコア: <%= @score %>問正解</span>
+      </div>
+    </header>
+
+    <!-- メイン問題部分 -->
+    <main class="question-main">
+      <div class="food-card">
+        <h2 class="food-name"><%= @current_food.name %></h2>
+        <h2 class="food-name"><%= @current_food.description %></h2>
+        <p class="question-text">この食べ物は渡辺さんが食べても大丈夫でしょうか？</p>
+      </div>
+
+      <!-- 回答ボタン部分 -->
+      <div class="answer-section">
+        <p class="instruction">答えを選んでください：</p>
+        <div class="answer-buttons">
+            <%= form_with url: quiz_answer_path, method: :post, local: true do |form| %>
+            <%= form.hidden_field :answer, value: "safe" %>
+            <%= form.submit "🟢 食べられる", class: "btn btn-safe" %>
+            <% end %>
+            
+            <%= form_with url: quiz_answer_path, method: :post, local: true do |form| %>
+            <%= form.hidden_field :answer, value: "dangerous" %>
+            <%= form.submit "🔴 食べられない", class: "btn btn-danger" %>
+            <% end %>
+        </div>
+       </div>
+    </main>
+  </div>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f0f8ff;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+
+    /* ヘッダースタイル */
+    .quiz-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .quiz-header h1 {
+      margin: 0 0 15px 0;
+      font-size: 28px;
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      background-color: rgba(255,255,255,0.2);
+      padding: 10px 15px;
+      border-radius: 20px;
+    }
+
+    /* メイン問題部分 */
+    .question-main {
+      padding: 30px;
+    }
+
+    .food-card {
+      background-color: #f8f9fa;
+      padding: 25px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 30px;
+      border: 2px solid #e9ecef;
+    }
+
+    .food-name {
+      font-size: 32px;
+      color: #333;
+      margin: 0 0 15px 0;
+      font-weight: bold;
+    }
+
+    .question-text {
+      font-size: 18px;
+      color: #666;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* 回答部分 */
+    .answer-section {
+      text-align: center;
+    }
+
+    .instruction {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .answer-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      min-width: 150px;
+      text-align: center;
+    }
+
+    .btn-safe {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-safe:hover {
+      background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+    }
+
+    /* レスポンシブ対応 */
+    @media (max-width: 600px) {
+      .progress-info {
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .answer-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 200px;
+      }
+    }
+  </style>
+</body>
+</html>
